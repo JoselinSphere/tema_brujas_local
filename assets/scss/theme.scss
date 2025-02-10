@@ -151,3 +151,34 @@
 	width: 50%;
 	margin-bottom: 10px;
 }
+
+.productView-thumbnail {
+    width: 120px; /* Ajusta según el tamaño de otras miniaturas */
+    height: 120px; /* Mantiene un tamaño uniforme */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Aplicar estas reglas también a los enlaces dentro de las miniaturas */
+.productView-thumbnail-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Ajustar la miniatura del video para que se vea igual que las imágenes */
+.productView-thumbnail[data-video="true"] img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen sin distorsión */
+    border-radius: 5px; /* Opcional, agrega bordes redondeados */
+}
+
+/* Evitar que las imágenes de miniatura se reduzcan o agranden de forma incorrecta */
+.productView-thumbnail img {
+    max-width: 100%;
+    max-height: 100%;
+}

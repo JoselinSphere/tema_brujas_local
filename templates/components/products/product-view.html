@@ -88,6 +88,20 @@
                     </a>
                 </li>
             {{/each}}
+            <!-- Miniatura del video -->
+            {{#if product.videos}}
+            {{#each product.videos}}
+                {{#if this.id}}  <!-- Evita elementos sin ID -->
+                    <li class="productView-thumbnail" data-video="true">
+                        <a class="productView-thumbnail-link"
+                            href="javascript:void(0);"
+                            data-video-id="{{this.id}}">
+                            <img src="https://img.youtube.com/vi/{{this.id}}/0.jpg" alt="Video Thumbnail">
+                        </a>
+                    </li>
+                {{/if}}
+            {{/each}}
+        {{/if}}
         </ul>
             </div>
             </section>
