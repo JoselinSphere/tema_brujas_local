@@ -200,10 +200,12 @@
 
     .slick-next {
         right: 0;
+        margin-top: 0px!important;
     }
 
     .slick-prev {
         left: 0;
+        margin-top: 0px!important;
     }
 
     img {
@@ -219,7 +221,7 @@
 }
 
 .productView-thumbnail {
-    width: 100% !important;
+    width: 100% ;
     @include grid-column(3);
     padding-left: spacing("quarter");
     padding-right: spacing("quarter");
@@ -240,6 +242,7 @@
     box-sizing: content-box;
     -ms-flex-pack: center;
     justify-content: center;
+    width: 100%;
 
     &:hover,
     &.is-active {

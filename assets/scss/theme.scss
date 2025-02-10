@@ -77,3 +77,77 @@
 // -----------------------------------------------------------------------------
 
 @import "layouts/layouts"; // 1
+
+
+// Monir web developer
+
+
+// product title
+.card-title {
+	font-size: 20px;
+	margin: 0;
+	-webkit-transition: .3s ease;
+	transition: .3s ease;
+	padding: 0 0;
+	overflow: hidden;
+	white-space: normal !important;
+	text-overflow: ellipsis;
+	font-weight: 600;
+	text-transform: capitalize;
+	width: 60%;
+	width: 100% !important;
+	/* display: block; */
+}
+.card-title > a {
+	color: #333;
+	font-size: 20px;
+	font-weight: 400;
+	display: block;
+	text-decoration: none;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	text-transform: capitalize;
+	padding-bottom: 1px;
+	white-space: normal;
+	font-size: 14px;
+}
+.price {
+	text-align: center !important;
+	font-size: 18px;
+	font-weight: 700;
+	letter-spacing: 0;
+	color: black;
+	font-size: 14px;
+}
+
+#bc-carousel-container-4c1537fc-dba0-4aa7-9ce8-c37c3d330890 {
+	display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  #bc-carousel-container-4c1537fc-dba0-4aa7-9ce8-c37c3d330890 {
+	display: block;
+}
+.heroCarousel.slick-initialized.slick-slider {
+	display: none;
+}
+.css-15nrlmu.bc-carousel__bullet {
+	margin-top: -27px;
+	width: 8px;
+	height: 8px;
+	background: none;
+	border: 1px solid #fff !important;
+}
+}
+
+.guia-de-tallas .col-md-12 {
+	padding-left: 0px !important;
+}
+.row.guia-de-tallas {
+	padding: 0 1.5rem;
+}
+.custom_footer_logo {
+	width: 50%;
+	margin-bottom: 10px;
+}

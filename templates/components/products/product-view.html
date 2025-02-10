@@ -46,9 +46,31 @@
                     </div>
                 </figure>
                
-        <div class="productView-thumbnails">
+        <ul class="productView-thumbnails"{{#gt product.images.length 5}} data-slick='{
+                "infinite": false,
+                "mobileFirst": true,
+                "dots": false,
+                "accessibility": false,
+                "slidesToShow": 5,
+                "slidesToScroll": 5,
+                "responsive": [
+                    {
+                        "breakpoint": 991,
+                        "settings": {
+                            "slidesToShow": 5,
+                            "slidesToScroll": 1
+                        }
+                    },
+                    {
+                        "breakpoint": 0,
+                        "settings": {
+                            "slidesToShow": 3,
+                            "slidesToScroll": 1
+                        }
+                    }
+                ]
+            }'{{/gt}}>
             {{#each product.images}}
-            <ul>
                 <li class="productView-thumbnail">
                     <a
                         class="productView-thumbnail-link"
@@ -65,18 +87,8 @@
                     }}
                     </a>
                 </li>
-            </ul>
             {{/each}}
-            {{#each product.videos.list}}
-            <ul>
-                <li class="productView-thumbnail videomn">
-                    <a href="javascript:void(0)" class="productView-thumbnail-link" data-video-item data-video-id="{{id}}" aria-label="product-Video">
-                        <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="//i.ytimg.com/vi/{{id}}/default.jpg"/ alt="Video">
-                    </a>
-                </li>
-            </ul>
-            {{/each}}
-        </div>
+        </ul>
             </div>
             </section>
             <div class="col-xl-7 col-md-7 col-12">

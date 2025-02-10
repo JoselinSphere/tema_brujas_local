@@ -127,6 +127,7 @@
                </div>
                 <!-- contact us section -->
                 <div class="col-lg-3 col-sm-3 col-12 foot-sec foot-contact fborder">
+                  
                     {{#if settings.address}}
                     <article class="footer-info-col footer-info-col--small" data-section-type="storeInfo">
                         <h3 class="footer-info-heading titleWrapper inactive">{{lang 'footer.info'}}
@@ -135,11 +136,18 @@
                                 <div class="acc-open"></div>
                             </div>
                         </h3>
+                          
                     <div id="descwrapper" class="desWrapper">
+                          <div class="custom_footer_logo"> <a href="https://reclamovirtual.pe/reclamar/34795b07-1d43-486b-adab-9124a2df38ff/librodereclamaciones">
+                          <img src="https://cdn11.bigcommerce.com/s-dkxrakxun7/images/stencil/original/image-manager/libro-reclamaciones-negro-1-.png" alt="" />
+                    </a>
+                         </div>
+                        
                         <span class="foot-address"><svg width="20px" height="18px"><use xlink:href="#foot-add"></use></svg></span>
                         <address>{{settings.address}}</address>
                         {{#if settings.phone_number}}
-                            <strong class="foot-phone"><span><svg width="20px" height="18px"><use xlink:href="#call-icon"></use></svg></span>{{lang 'footer.call_us' phone_number=settings.phone_number}}</strong>
+                            <!--<strong class="foot-phone"><span><svg width="20px" height="18px"><use xlink:href="#call-icon"></use></svg></span>{{lang 'footer.call_us' phone_number=settings.phone_number}}</strong>-->
+                              <strong class="foot-phone"><span><svg width="20px" height="18px"><use xlink:href="#call-icon"></use></svg></span>  <a href="https://api.whatsapp.com/send?phone=51924886303&amp;text=Bienvenida%20a%20BRUJHA%27S.%20%C2%BFC%C3%B3mo%20podemos%20ayudarte%20hoy%3F&amp;_kx=">+51 924 886 303</a></strong>
                         {{/if}}
                     </div>
                     </article>
