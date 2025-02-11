@@ -101,25 +101,79 @@ export default class Product extends PageManager {
         }
     }
 
+    // pdpVideo() {
+    //     const hasVideo = $('.videomn');
+    //     if (hasVideo.length > 0) {
+    //         $('.videomn > a').each(function(){
+    //             $(this).on('click', function(){
+    //                 const videoID = $(this).attr('data-video-id');
+    //                 const iframe = '<iframe id="player" class="lazyload" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/' + videoID + '?rel=0" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
+    //                 $(this).addClass('is-active');
+    //                 $(this).parent('.videomn').children('a').removeClass('is-active');
+    //                 $("#player").remove();
+    //                 $(".productView-image").before(iframe).hide();
+    //             });
+    //         });
+    //         $(".productView-thumbnail:not(.videomn), .slick-prev.slick-arrow").click(function(){
+    //             $(".productView-images .videomn a").removeClass('is-active');
+    //             $("#player").remove();
+    //             $(".productView-image").show();
+    //         })
+    //     }
+    // }
+
     pdpVideo() {
-        const hasVideo = $('.videomn');
-        if (hasVideo.length > 0) {
-            $('.videomn > a').each(function(){
-                $(this).on('click', function(){
-                    const videoID = $(this).attr('data-video-id');
-                    const iframe = '<iframe id="player" class="lazyload" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/' + videoID + '?rel=0" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
-                    $(this).addClass('is-active');
-                    $(this).parent('.videomn').children('a').removeClass('is-active');
-                    $("#player").remove();
-                    $(".productView-image").before(iframe).hide();
-                });
-            });
-            $(".productView-thumbnail:not(.videomn), .slick-prev.slick-arrow").click(function(){
-                $(".productView-images .videomn a").removeClass('is-active');
-                $("#player").remove();
-                $(".productView-image").show();
-            })
+        const $videoThumbnail = $('.productView-thumbnail[data-video="true"]');
+        const $mainImageContainer = $('.productView-img-container');
+        const $mainImage = $('.productView-image--default');
+        const $zoomContainer = $('[data-image-gallery-main]'); // Contenedor de zoom principal
+    
+        // Crear contenedor de video oculto si no existe
+        if (!$('#videoContainer').length) {
+            const videoContainer = $('<div id="videoContainer" class="productView-video-container" style="display: none;"></div>');
+            const videoFrame = $('<iframe id="productVideo" width="100%" height="400" frameborder="0" allowfullscreen></iframe>');
+            videoContainer.append(videoFrame);
+            $mainImageContainer.append(videoContainer);
         }
+    
+        const $videoContainer = $('#videoContainer');
+        const $videoFrame = $('#productVideo');
+    
+        // Desactivar el evento de zoom al mostrar el video
+        const disableZoom = () => $zoomContainer.off('mousemove').off('mouseenter').off('mouseleave');
+    
+        // Reactivar el evento de zoom cuando se oculta el video
+        const enableZoom = () => {
+            // Reactiva el comportamiento del zoom que BigCommerce utiliza
+            $zoomContainer.on('mousemove', zoomHandler).on('mouseenter', zoomHandler).on('mouseleave', zoomHandler);
+        };
+    
+        // Evento de clic en la miniatura del video
+        $videoThumbnail.on('click', function (event) {
+            event.preventDefault(); // Evita que el foco se mueva al fondo de la página
+    
+            const videoId = $(this).find('a').attr('data-video-id');
+            if (videoId) {
+                const videoUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&controls=0`;
+    
+                // Ocultar imagen principal, desactivar zoom y mostrar video
+                $mainImage.hide();
+                disableZoom();
+                $videoFrame.attr('src', videoUrl);
+                $videoContainer.show();
+    
+                // Mantén el foco en el contenedor principal del producto
+                $('html, body').scrollTop($mainImageContainer.offset().top);
+            }
+        });
+    
+        // Restaurar la imagen cuando se haga clic en otra miniatura
+        $('.productView-thumbnail:not([data-video]), .slick-prev, .slick-next').on('click', function () {
+            $videoContainer.hide();
+            $videoFrame.attr('src', ''); // Limpia el video
+            $mainImage.show();
+            enableZoom();
+        });
     }
 
     ariaDescribeReviewInputs($form) {
