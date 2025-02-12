@@ -249,3 +249,27 @@
         font-size: 42px; 
     }
 }
+/* imágenes de subcategorías */
+.subcategory-item img {
+    width: 100%;
+    max-width: 120px; /* Reducimos el tamaño */
+    height: auto;
+}
+
+/* En pantallas grandes, */
+@media (min-width: 1200px) {
+    .subcategory-item img {
+        max-width: 130px;
+    }
+}
+
+/* Contenedor de subcategorías: Alineación correcta */
+.subcategories-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Alinea a la izquierda */
+    align-items: flex-start; /* Evita que bajen demasiado */
+    padding-top: 10px;
+    gap: 15px; /* Reduce el espacio entre las filas */
+}
+

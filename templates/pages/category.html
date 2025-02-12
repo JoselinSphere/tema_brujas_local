@@ -80,8 +80,8 @@ category:
                         {{/unless}}
                     </div>
                 </div>
-            
-                <!-- Segunda fila: Imagen más grande y contenido a la derecha -->
+
+                <!-- Segunda fila: Imagen y contenido a la derecha -->
                 <div class="row category-content align-items-start">
                     <!-- Columna 1: Imagen más grande -->
                     <div class="col-xl-4 col-md-5 col-sm-12 text-center category-image-container">
@@ -93,39 +93,42 @@ category:
                             }}
                         {{/if}}
                     </div>
-            
-                    <!-- Columna 2: Descripción + Subcategorías -->
+
+                    <!-- Columna 2: Contenedor de descripción + subcategorías -->
                     <div class="col-xl-8 col-md-7 col-sm-12 category-right d-flex flex-column">
-                        <!-- Fila 1: Descripción -->
-                        <div class="category-description">
-                            <p class="category-text">
-                                {{{category.description}}}
-                            </p>
-                        </div>
-            
-                        <!-- Fila 2: Subcategorías -->
-                        {{#if category.subcategories}}
-                            <div class="subcategories-container">
-                                <div class="row justify-content-start">
-                                    {{#each category.subcategories}}
-                                        {{#if image}}
-                                            <div class="col-6 col-sm-4 col-md-3 col-lg-3 subcategory-item">
-                                                <a href="{{url}}" alt="{{name}}" title="{{name}}">
-                                                    <img src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" 
-                                                        alt="category">
-                                                </a>
-                                                <div class="cate-sub-name">
-                                                    <a href="{{url}}" alt="{{name}}" title="{{name}}">{{name}}</a>
-                                                </div>
-                                            </div>
-                                        {{/if}}
-                                    {{/each}}
-                                </div>
+                        <div class="category-content-wrapper">
+                            <!-- Fila 1: Descripción -->
+                            <div class="category-description">
+                                <p class="category-text">
+                                    {{{category.description}}}
+                                </p>
                             </div>
-                        {{/if}}
+
+                            <!-- Fila 2: Subcategorías -->
+                            {{#if category.subcategories}}
+                                <div class="subcategories-container">
+                                    <div class="row">
+                                        {{#each category.subcategories}}
+                                            {{#if image}}
+                                                <div class="col-6 col-sm-4 col-md-3 col-lg-3 subcategory-item">
+                                                    <a href="{{url}}" alt="{{name}}" title="{{name}}">
+                                                        <img src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" 
+                                                            alt="category">
+                                                    </a>
+                                                    <div class="cate-sub-name">
+                                                        <a href="{{url}}" alt="{{name}}" title="{{name}}">{{name}}</a>
+                                                    </div>
+                                                </div>
+                                            {{/if}}
+                                        {{/each}}
+                                    </div>
+                                </div>
+                            {{/if}}
+                        </div>
                     </div>
                 </div>
             </div>
+
 
             {{{region name="category_above_gridandlist"}}}
             <div class="row cate-border">
