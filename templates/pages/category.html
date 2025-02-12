@@ -38,7 +38,7 @@ category:
         </aside>
         <div class="col-lg-9 col-sm-12 col-md-12  col-xs-12 colright" id="content">
             
-            <div class="category-top row hidden-xs">
+            <!-- <div class="category-top row hidden-xs">
                 <div class="col-12 col-md-12">
                     {{#unless theme_settings.hide_category_page_heading }}
                         <h2 class="section-heading">{{category.name}}</h2>
@@ -67,7 +67,66 @@ category:
                                </div>
                             {{/if}}
                 </div>
+            </div> -->
+
+            <!-- Agregado por sphere para el header -->
+            <div class="category-container container">
+                <!-- Primera fila: Título de la categoría -->
+                <div class="row">
+                    <div class="col-12">
+                        {{#unless theme_settings.hide_category_page_heading }}
+                            <h2 class="category-title">{{category.name}}</h2>
+                            {{{region name="category_below_header"}}}
+                        {{/unless}}
+                    </div>
+                </div>
+            
+                <!-- Segunda fila: Imagen más grande y contenido a la derecha -->
+                <div class="row category-content align-items-start">
+                    <!-- Columna 1: Imagen más grande -->
+                    <div class="col-xl-4 col-md-5 col-sm-12 text-center category-image-container">
+                        {{#if category.image}}
+                            {{> components/common/responsive-img
+                                image=category.image
+                                fallback_size="800w"
+                                class="category-image-large"
+                            }}
+                        {{/if}}
+                    </div>
+            
+                    <!-- Columna 2: Descripción + Subcategorías -->
+                    <div class="col-xl-8 col-md-7 col-sm-12 category-right d-flex flex-column">
+                        <!-- Fila 1: Descripción -->
+                        <div class="category-description">
+                            <p class="category-text">
+                                {{{category.description}}}
+                            </p>
+                        </div>
+            
+                        <!-- Fila 2: Subcategorías -->
+                        {{#if category.subcategories}}
+                            <div class="subcategories-container">
+                                <div class="row justify-content-start">
+                                    {{#each category.subcategories}}
+                                        {{#if image}}
+                                            <div class="col-6 col-sm-4 col-md-3 col-lg-3 subcategory-item">
+                                                <a href="{{url}}" alt="{{name}}" title="{{name}}">
+                                                    <img src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" 
+                                                        alt="category">
+                                                </a>
+                                                <div class="cate-sub-name">
+                                                    <a href="{{url}}" alt="{{name}}" title="{{name}}">{{name}}</a>
+                                                </div>
+                                            </div>
+                                        {{/if}}
+                                    {{/each}}
+                                </div>
+                            </div>
+                        {{/if}}
+                    </div>
+                </div>
             </div>
+
             {{{region name="category_above_gridandlist"}}}
             <div class="row cate-border">
                 <div class="col-md-6 col-3 category-grid">
