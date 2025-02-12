@@ -21,11 +21,9 @@ export default class ProductDetails extends ProductDetailsBase {
         this.imageGallery = new ImageGallery($('[data-image-gallery]', this.$scope));
         this.imageGallery.init();
         setTimeout(() => {
-            // console.log("Imágenes inicializadas en imageGallery:", this.imageGallery.imageData || "⚠ No hay imágenes disponibles");
         
             if (!this.imageGallery.imageData || this.imageGallery.imageData.length === 0) {
                 console.warn("⚠ Intentando obtener imágenes directamente desde `product.images`");
-                // console.log("Imágenes del producto:", this.context.productImages || "⚠ No se encontraron imágenes");
             }
         }, 2000);
         this.listenQuantityChange();
@@ -289,13 +287,13 @@ export default class ProductDetails extends ProductDetailsBase {
         const $form = $changedOption.parents('form');
         const productId = $('[name="product_id"]', $form).val();
     
-        // Identificar si el cambio fue en la opción de "Color"
+        // 🔍 Identificar si el cambio fue en la opción de "Color"
         const isColorChange = $changedOption.closest('[data-product-attribute]').find('.form-label')
             .text().trim().toLowerCase().includes("color");
     
-        // console.log(" Opción cambiada:", $changedOption.attr('name'));
+        // console.log("🔍 Opción cambiada:", $changedOption.attr('name'));
     
-        // Obtener el color seleccionado
+        // 🎨 Obtener el color seleccionado
         const selectedColorInput = $('[data-product-attribute] input:checked', $form)
             .filter((_, el) => $(el).closest('[data-product-attribute]').find('.form-label')
             .text().trim().toLowerCase().includes("color"));
@@ -305,31 +303,31 @@ export default class ProductDetails extends ProductDetailsBase {
             selectedColorInput.attr("data-content") || 
             selectedColorInput.next("label").text().trim() : null;
     
-        // console.log(" Color seleccionado:", selectedColor || "⚠ No se detectó color");
+        // console.log("🎨 Color seleccionado:", selectedColor || "⚠ No se detectó color");
     
         // 🔄 Llamada a la API de BigCommerce para actualizar variantes
         utils.api.productAttributes.optionChange(productId, $form.serialize(), 'products/bulk-discount-rates', (err, response) => {
             const productAttributesData = response.data || {};
             
-            // console.log(" Datos de variantes recibidos:", productAttributesData);
+            // console.log("📦 Datos de variantes recibidos:", productAttributesData);
     
-            //  1. Actualizar las tallas disponibles
+            // ✅ 1. Actualizar las tallas disponibles
             this.updateProductAttributes(productAttributesData);
             this.updateView(productAttributesData, response.content);
             this.updateProductDetailsData();
     
-            //  2. Si se cambió el color, seleccionar la primera talla disponible
+            // ✅ 2. Si se cambió el color, seleccionar la primera talla disponible
             if (isColorChange) {
                 const firstAvailableSize = this.getFirstAvailableSize($form, productAttributesData);
                 if (firstAvailableSize) {
-                    // console.log(" Primera talla disponible encontrada:", firstAvailableSize);
+                    // console.log("👕 Primera talla disponible encontrada:", firstAvailableSize);
     
                     // Seleccionar la primera talla disponible en la interfaz
                     this.selectSizeOption($form, firstAvailableSize);
                 }
             }
     
-            //  3. Actualizar la imagen del producto
+            // ✅ 3. Actualizar la imagen del producto
             if (selectedColor) {
                 this.updateProductImageByColor(selectedColor);
             }
@@ -338,7 +336,6 @@ export default class ProductDetails extends ProductDetailsBase {
         // Mantener la lógica de validación antes de comprar
         this.setProductVariant();
     }
-
     getFirstAvailableSize($form, productAttributesData) {
         const $sizeOptions = $('[data-product-attribute]', $form).filter((_, el) =>
             $(el).find('.form-label').text().trim().toLowerCase().includes("talla")
@@ -368,7 +365,7 @@ export default class ProductDetails extends ProductDetailsBase {
             .filter((_, el) => $(el).val() === sizeValue);
     
         if ($sizeOption.length) {
-            // console.log(" Seleccionando talla:", sizeValue);
+            // console.log("✅ Seleccionando talla:", sizeValue);
             $sizeOption.prop('checked', true).trigger('change');
         }
     }            
@@ -379,20 +376,20 @@ export default class ProductDetails extends ProductDetailsBase {
             return;
         }
     
-        // console.log(" Buscando imagen para el color:", selectedColor);
+        // console.log("🎨 Buscando imagen para el color:", selectedColor);
     
         // Intentamos obtener imágenes desde imageGallery.imageData
         let variantImages = this.imageGallery.imageData || [];
     
-        // console.log(" Imágenes disponibles en imageGallery:", variantImages.length ? variantImages : "⚠ No hay imágenes");
+        // console.log("📸 Imágenes disponibles en imageGallery:", variantImages.length ? variantImages : "⚠ No hay imágenes");
     
         // Si imageGallery.imageData está vacío, intentamos obtenerlas desde this.context.productImages
         if (!variantImages.length && this.context.productImages) {
-            console.warn("⚠ No hay imágenes en imageGallery.imageData, usando this.context.productImages.");
+            // console.warn("⚠ No hay imágenes en imageGallery.imageData, usando this.context.productImages.");
             variantImages = this.context.productImages;
         }
     
-        // console.log(" Imágenes disponibles (imageGallery + context):", variantImages.length ? variantImages : "⚠ No hay imágenes");
+        // console.log("📸 Imágenes disponibles (imageGallery + context):", variantImages.length ? variantImages : "⚠ No hay imágenes");
     
         // Buscamos la imagen que coincide con el color
         const matchingVariant = variantImages.find(image => {
@@ -400,16 +397,16 @@ export default class ProductDetails extends ProductDetailsBase {
         });
     
         if (matchingVariant) {
-            console.log("✅ Imagen encontrada para color:", selectedColor, matchingVariant);
+            // console.log("✅ Imagen encontrada para color:", selectedColor, matchingVariant);
             this.imageGallery.setAlternateImage({
                 mainImageUrl: matchingVariant.data || matchingVariant.zoomImageUrl,
                 zoomImageUrl: matchingVariant.data || matchingVariant.zoomImageUrl,
                 mainImageSrcset: matchingVariant.data || matchingVariant.mainImageUrl,
             });
         } else {
-            console.warn("No se encontró una imagen para el color");
+            console.warn("No se encontró una imagen para el color: ${selectedColor}");
         }
-    } 
+    }
 
     /**
      * if this setting is enabled in Page Builder
