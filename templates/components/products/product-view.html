@@ -180,7 +180,10 @@
                                             {{#each product.options}}
                                                 {{{dynamicComponent 'components/products/options'}}}
                                             {{/each}}
+                                             <!-- Mostrar color seleccionado -->
+                                            <p id="selected-color-container" style="display: none;">Color seleccionado: <span id="selected-color-text"></span></p>
                                         </div>
+                                       
                                         {{#if product.can_purchase}}
                                             {{> components/products/add-to-cart}}
                                         {{/if}}
