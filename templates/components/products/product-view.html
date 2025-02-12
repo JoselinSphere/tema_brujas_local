@@ -173,6 +173,9 @@
                                           data-cart-item-add>
                                         <input type="hidden" name="action" value="add">
                                         <input type="hidden" name="product_id" value="{{product.id}}"/>
+                                        <div class="guia-talla">
+                                            <a href="/guia-de-tallas/">Guía de tallas</a>
+                                        </div>
                                         <div data-product-option-change style="display:none;" class="product-variant">
                                             {{#each product.options}}
                                                 {{{dynamicComponent 'components/products/options'}}}
