@@ -267,19 +267,47 @@
 .subcategories-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start; /* Alinea a la izquierda */
-    align-items: flex-start; /* Evita que bajen demasiado */
+    justify-content: flex-start;
+    align-items: flex-start;
     padding-top: 10px;
-    gap: 15px; /* Reduce el espacio entre las filas */
+    gap: 15px; 
 }
 
-// Guia de talla
+
+/*  cantidad y la guía de tallas */
+.quantity-container {
+    display: flex;
+    align-items: center; 
+    gap: 15px; 
+}
+
+/* botones de incremento */
+.form-increment {
+    display: flex;
+    align-items: center;
+    height: 40px; 
+}
+
+/*  Guía de Tallas  */
 .guia-talla {
-    margin-bottom: 20px; 
+    display: flex;
+    align-items: center; 
+    height: 40px; 
 }
 
 .guia-talla a {
-    color: black;
-	font-weight: bold;
-    text-decoration: none; 
+    color: #000; 
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: underline;
+    white-space: nowrap; 
+    display: flex;
+    align-items: center; 
+    height: 100%; 
+}
+
+.color-container {
+    color: #000; 
+    font-size: 15px;
+    font-weight: bold;
 }

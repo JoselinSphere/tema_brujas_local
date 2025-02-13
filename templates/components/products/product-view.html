@@ -173,17 +173,13 @@
                                           data-cart-item-add>
                                         <input type="hidden" name="action" value="add">
                                         <input type="hidden" name="product_id" value="{{product.id}}"/>
-                                        <div class="guia-talla">
-                                            <a href="/guia-de-tallas/?return={{product.url}}">Guía de tallas</a>
-                                        </div>
                                         <div data-product-option-change style="display:none;" class="product-variant">
                                             {{#each product.options}}
                                                 {{{dynamicComponent 'components/products/options'}}}
                                             {{/each}}
                                              <!-- Mostrar color seleccionado -->
-                                            <p id="selected-color-container" style="display: none;">Color seleccionado: <span id="selected-color-text"></span></p>
+                                            <p id="selected-color-container" style="display: none;" class="color-container">Color seleccionado: <span id="selected-color-text"></span></p>
                                         </div>
-                                       
                                         {{#if product.can_purchase}}
                                             {{> components/products/add-to-cart}}
                                         {{/if}}
