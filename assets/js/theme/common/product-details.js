@@ -282,61 +282,58 @@ export default class ProductDetails extends ProductDetailsBase {
     //     });
     // }
     // JR 
-    productOptionsChanged(event) {
-        const $changedOption = $(event.target);
-        const $form = $changedOption.parents('form');
-        const productId = $('[name="product_id"]', $form).val();
-    
-        //  Identificar si el cambio fue en la opción de "Color"
-        const isColorChange = $changedOption.closest('[data-product-attribute]').find('.form-label')
-            .text().trim().toLowerCase().includes("color");
-    
-        // console.log(" Opción cambiada:", $changedOption.attr('name'));
-    
-        //  Obtener el color seleccionado
-        const selectedColorInput = $('[data-product-attribute] input:checked', $form)
-            .filter((_, el) => $(el).closest('[data-product-attribute]').find('.form-label')
-            .text().trim().toLowerCase().includes("color"));
+        productOptionsChanged(event) {
+            const $changedOption = $(event.target);
+            const $form = $changedOption.parents('form');
+            const productId = $('[name="product_id"]', $form).val();
         
-        let selectedColor = selectedColorInput.length ? 
-            selectedColorInput.attr("aria-label") || 
-            selectedColorInput.attr("data-content") || 
-            selectedColorInput.next("label").text().trim() : null;
-    
-        console.log(" Color seleccionado:", selectedColor || "⚠ No se detectó color");
-        this.updateSelectedColor(selectedColor);
-    
-        //  Llamada a la API de BigCommerce para actualizar variantes
-        utils.api.productAttributes.optionChange(productId, $form.serialize(), 'products/bulk-discount-rates', (err, response) => {
-            const productAttributesData = response.data || {};
-            
-            // console.log(" Datos de variantes recibidos:", productAttributesData);
-    
-            //  1. Actualizar las tallas disponibles
-            this.updateProductAttributes(productAttributesData);
-            this.updateView(productAttributesData, response.content);
-            this.updateProductDetailsData();
-    
-            //  2. Si se cambió el color, seleccionar la primera talla disponible
-            if (isColorChange) {
-                const firstAvailableSize = this.getFirstAvailableSize($form, productAttributesData);
-                if (firstAvailableSize) {
-                    // console.log(" Primera talla disponible encontrada:", firstAvailableSize);
-    
-                    // Seleccionar la primera talla disponible en la interfaz
-                    this.selectSizeOption($form, firstAvailableSize);
+            //  Identificar si el cambio fue en la opción de "Color"
+            const isColorChange = $changedOption.closest('[data-product-attribute]').find('.form-label')
+                .text().trim().toLowerCase().includes("color");
+        
+            // Obtener el color seleccionado
+            const selectedColorInput = $('[data-product-attribute] input:checked', $form)
+                .filter((_, el) => $(el).closest('[data-product-attribute]').find('.form-label')
+                .text().trim().toLowerCase().includes("color"));
+        
+            let selectedColor = selectedColorInput.length ? 
+                selectedColorInput.attr("aria-label") || 
+                selectedColorInput.attr("data-content") || 
+                selectedColorInput.next("label").text().trim() : null;
+        
+            // console.log(" Color seleccionado:", selectedColor || "⚠ No se detectó color");
+            this.updateSelectedColor(selectedColor);
+        
+            // Llamada a la API de BigCommerce para actualizar variantes
+            utils.api.productAttributes.optionChange(productId, $form.serialize(), 'products/bulk-discount-rates', (err, response) => {
+                const productAttributesData = response.data || {};
+        
+                this.updateProductAttributes(productAttributesData);
+                this.updateView(productAttributesData, response.content);
+                this.updateProductDetailsData();
+        
+                // ** MODIFICACIÓN: Verificar si ya hay una talla seleccionada **
+                const isSizeSelected = !!$('[data-product-attribute] input:checked, [data-product-attribute] select option:selected', $form)
+                    .filter((_, el) => $(el).closest('[data-product-attribute]').find('.form-label')
+                    .text().trim().toLowerCase().includes("talla")).length;
+        
+                // Si se cambió el color y NO hay una talla seleccionada, asignar la primera disponible
+                if (isColorChange && !isSizeSelected) {
+                    const firstAvailableSize = this.getFirstAvailableSize($form, productAttributesData);
+                    if (firstAvailableSize) {
+                        this.selectSizeOption($form, firstAvailableSize);
+                    }
                 }
-            }
-    
-            // 3. Actualizar la imagen del producto
-            if (selectedColor) {
-                this.updateProductImageByColor(selectedColor);
-            }
-        });
-    
-        // Mantener la lógica de validación antes de comprar
-        this.setProductVariant();
-    }
+        
+                // Actualizar la imagen del producto si hay un color seleccionado
+                if (selectedColor) {
+                    this.updateProductImageByColor(selectedColor);
+                }
+            });
+        
+            // Mantener la lógica de validación antes de comprar
+            this.setProductVariant();
+        }        
 
     updateSelectedColor(selectedColor) {
         const colorContainer = document.getElementById("selected-color-container");
@@ -375,6 +372,7 @@ export default class ProductDetails extends ProductDetailsBase {
     
         return firstAvailableSize;
     }
+    
     selectSizeOption($form, sizeValue) {
         if (!sizeValue) return;
     
@@ -695,6 +693,13 @@ export default class ProductDetails extends ProductDetailsBase {
      * @param  {Object} data Product attribute data
      */
     updateProductAttributes(data) {
+        console.log("Datos de producto recibidos:", data);
+
+    // 🔹 Si el producto es comprable pero aparece sin stock, corregimos el error.
+    if (data.purchasable && !data.instock) {
+        console.warn("⚠ Producto es comprable pero marcado sin stock. Corrigiendo...");
+        data.instock = true; // Forzar stock a verdadero
+    }
         super.updateProductAttributes(data);
         this.showProductImage(data.image);
     }
