@@ -46,63 +46,66 @@
                     </div>
                 </figure>
                
-        <ul class="productView-thumbnails"{{#gt product.images.length 5}} data-slick='{
-                "infinite": false,
-                "mobileFirst": true,
-                "dots": false,
-                "accessibility": false,
-                "slidesToShow": 5,
-                "slidesToScroll": 5,
-                "responsive": [
-                    {
-                        "breakpoint": 991,
-                        "settings": {
-                            "slidesToShow": 5,
-                            "slidesToScroll": 1
+                <ul class="productView-thumbnails"{{#gt product.images.length 5}} data-slick='{
+                    "infinite": false,
+                    "mobileFirst": true,
+                    "dots": false,
+                    "accessibility": false,
+                    "slidesToShow": 5,
+                    "slidesToScroll": 5,
+                    "responsive": [
+                        {
+                            "breakpoint": 991,
+                            "settings": {
+                                "slidesToShow": 5,
+                                "slidesToScroll": 1
+                            }
+                        },
+                        {
+                            "breakpoint": 0,
+                            "settings": {
+                                "slidesToShow": 3,
+                                "slidesToScroll": 1
+                            }
                         }
-                    },
-                    {
-                        "breakpoint": 0,
-                        "settings": {
-                            "slidesToShow": 3,
-                            "slidesToScroll": 1
-                        }
-                    }
-                ]
-            }'{{/gt}}>
-            {{#each product.images}}
-                <li class="productView-thumbnail">
-                    <a
-                        class="productView-thumbnail-link"
-                        href="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
-                        data-image-gallery-item
-                        data-image-gallery-new-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.product_size}}"
-                        data-image-gallery-new-image-srcset="{{getImageSrcset this use_default_sizes=true}}"
-                        data-image-gallery-zoom-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
-                    >
-                    {{> components/common/responsive-img
-                        image=this
-                        fallback_size=../theme_settings.productview_thumb_size
-                        lazyload=../theme_settings.lazyload_mode
-                    }}
-                    </a>
-                </li>
-            {{/each}}
-            <!-- Miniatura del video -->
-            {{#if product.videos}}
-            {{#each product.videos}}
-                {{#if this.id}}  <!-- Evita elementos sin ID -->
-                    <li class="productView-thumbnail" data-video="true">
+                    ]
+                }'{{/gt}}>
+                {{#each product.images}}
+                    <li class="productView-thumbnail">
                         <a class="productView-thumbnail-link"
-                            href="javascript:void(0);"
-                            data-video-id="{{this.id}}">
-                            <img src="https://img.youtube.com/vi/{{this.id}}/0.jpg" alt="Video Thumbnail">
+                            href="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
+                            data-image-gallery-item
+                            data-image-gallery-new-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.product_size}}"
+                            data-image-gallery-new-image-srcset="{{getImageSrcset this use_default_sizes=true}}"
+                            data-image-gallery-zoom-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}">
+                            {{> components/common/responsive-img
+                                image=this
+                                fallback_size=../theme_settings.productview_thumb_size
+                                lazyload=../theme_settings.lazyload_mode
+                            }}
                         </a>
                     </li>
-                {{/if}}
-            {{/each}}
-        {{/if}}
-        </ul>
+                {{/each}}
+            
+                <!-- Miniaturas de los videos -->
+                {{#if product.videos.list}}
+                {{log "Lista de videos detectados:" product.videos.list}}
+                {{#each product.videos.list}}
+                    {{log "Generando miniatura para video:" this.id}}
+                    <li class="productView-thumbnail" data-video="true">
+                        <a class="productView-thumbnail-link" href="javascript:void(0);" data-video-id="{{this.id}}">
+                            <img src="https://img.youtube.com/vi/{{this.id}}/0.jpg" 
+                                onerror="this.onerror=null; this.src='https://via.placeholder.com/150?text=Video+No+Disponible';"
+                                alt="Video Thumbnail">
+                        </a>
+                    </li>
+                {{/each}}
+            {{else}}
+                <p>No hay videos disponibles.</p>
+            {{/if}}
+
+            </ul>
+    
             </div>
             </section>
             <div class="col-xl-7 col-md-7 col-12">
@@ -183,7 +186,6 @@
                                         {{#if product.can_purchase}}
                                             {{> components/products/add-to-cart}}
                                         {{/if}}
-
                                         {{#if product.out_of_stock}}
                                             {{#if product.out_of_stock_message}}
                                                 {{> components/common/alert/alert-error product.out_of_stock_message}}

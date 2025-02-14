@@ -131,7 +131,7 @@ export default class Product extends PageManager {
         // Crear contenedor de video oculto si no existe
         if (!$('#videoContainer').length) {
             const videoContainer = $('<div id="videoContainer" class="productView-video-container" style="display: none;"></div>');
-            const videoFrame = $('<iframe id="productVideo" width="100%" height="400" frameborder="0" allowfullscreen></iframe>');
+            const videoFrame = $('<iframe id="productVideo" width="100%" height="750" frameborder="0" allowfullscreen></iframe>');
             videoContainer.append(videoFrame);
             $mainImageContainer.append(videoContainer);
         }
@@ -144,7 +144,7 @@ export default class Product extends PageManager {
     
         // Reactivar el evento de zoom cuando se oculta el video
         const enableZoom = () => {
-            // Reactiva el comportamiento del zoom que BigCommerce utiliza
+            // Reactiva el comportamiento del zoom 
             $zoomContainer.on('mousemove', zoomHandler).on('mouseenter', zoomHandler).on('mouseleave', zoomHandler);
         };
     
@@ -154,8 +154,8 @@ export default class Product extends PageManager {
     
             const videoId = $(this).find('a').attr('data-video-id');
             if (videoId) {
-                const videoUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&controls=0`;
-    
+                const videoUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&modestbranding=1&rel=0&controls=0&showinfo=0&playsinline=1&enablejsapi=1&loop=1&playlist=${videoId}`;
+                
                 // Ocultar imagen principal, desactivar zoom y mostrar video
                 $mainImage.hide();
                 disableZoom();
@@ -174,8 +174,8 @@ export default class Product extends PageManager {
             $mainImage.show();
             enableZoom();
         });
-    }
-
+    }	
+    
     ariaDescribeReviewInputs($form) {
         $form.find('[data-input]').each((_, input) => {
             const $input = $(input);
