@@ -34,6 +34,14 @@ export default class ProductDetails extends ProductDetailsBase {
 
         const $form = $('form[data-cart-item-add]', $scope);
 
+        if ($form.length) {
+            // Deseleccionar radios y selects de opciones de color y talla
+            $('[data-product-attribute] input:checked', $form).prop('checked', false);
+            $('[data-product-attribute] select', $form).prop('selectedIndex', 0);
+    
+            // console.log(" Se han deseleccionado las opciones de color y talla al cargar la página.");
+        }
+
         if ($form[0].checkValidity()) {
             this.updateProductDetailsData();
         } else {
@@ -286,7 +294,7 @@ export default class ProductDetails extends ProductDetailsBase {
             const $changedOption = $(event.target);
             const $form = $changedOption.parents('form');
             const productId = $('[name="product_id"]', $form).val();
-        
+            
             //  Identificar si el cambio fue en la opción de "Color"
             const isColorChange = $changedOption.closest('[data-product-attribute]').find('.form-label')
                 .text().trim().toLowerCase().includes("color");
@@ -300,7 +308,7 @@ export default class ProductDetails extends ProductDetailsBase {
                 selectedColorInput.attr("aria-label") || 
                 selectedColorInput.attr("data-content") || 
                 selectedColorInput.next("label").text().trim() : null;
-        
+
             // console.log(" Color seleccionado:", selectedColor || "⚠ No se detectó color");
             this.updateSelectedColor(selectedColor);
         
@@ -338,7 +346,7 @@ export default class ProductDetails extends ProductDetailsBase {
     updateSelectedColor(selectedColor) {
         const colorContainer = document.getElementById("selected-color-container");
         const colorText = document.getElementById("selected-color-text");
-    
+        // console.log("Color seleccionado: ", selectedColor);
         if (!colorContainer || !colorText) return; 
     
         if (selectedColor) {
@@ -750,4 +758,5 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }, 500);
 });
+
 
