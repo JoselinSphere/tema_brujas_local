@@ -191,12 +191,9 @@
                                         {{log "=== INICIO DEPURACIÓN - Producto ID:" product.id "==="}}
                                         {{log "¿Puede comprar - can_purchase ?:" product.can_purchase}}
 
-                                        {{#if product.can_purchase}}
-                                        {{> components/products/add-to-cart}}
-                                        {{/if}}
-                                        {{#unless  product.can_purchase}}
-                                        {{> components/products/add-to-cart}}
-                                        {{/unless }}
+                                        <div id="add-to-cart-container">
+                                            {{> components/products/add-to-cart}}
+                                        </div>                                        
 
                                         {{#if product.out_of_stock}}
                                         {{#if product.out_of_stock_message}}

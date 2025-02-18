@@ -695,11 +695,6 @@ export default class ProductDetails extends ProductDetailsBase {
     updateProductAttributes(data) {
         console.log("Datos de producto recibidos:", data);
 
-    // 🔹 Si el producto es comprable pero aparece sin stock, corregimos el error.
-    if (data.purchasable && !data.instock) {
-        console.warn("⚠ Producto es comprable pero marcado sin stock. Corrigiendo...");
-        data.instock = true; // Forzar stock a verdadero
-    }
         super.updateProductAttributes(data);
         this.showProductImage(data.image);
     }
@@ -739,3 +734,20 @@ export default class ProductDetails extends ProductDetailsBase {
         }));
     }
 }
+document.addEventListener("DOMContentLoaded", function() {
+    setTimeout(function() {
+        if (window.BCData && BCData.product_attributes) {
+            let addToCart = document.getElementById("add-to-cart-container");
+            if (addToCart) {
+                if (BCData.product_attributes.purchasable) {
+                    console.log("BLOCK");
+                    addToCart.style.display = "block";
+                } else {
+                    console.log("NONE");
+                    addToCart.style.display = "none";
+                }
+            }
+        }
+    }, 500);
+});
+
