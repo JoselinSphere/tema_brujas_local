@@ -13,6 +13,23 @@ import { isBrowserIE, convertIntoArray } from './utils/ie-helpers';
 import bannerUtils from './utils/banner-utils';
 import currencySelector from '../global/currency-selector';
 
+document.addEventListener("DOMContentLoaded", function() {
+    setTimeout(function() {
+        if (window.BCData && BCData.product_attributes) {
+            let addToCart = document.getElementById("add-to-cart-container");
+            if (addToCart) {
+                if (BCData.product_attributes.purchasable) {
+                    console.log("BLOCK");
+                    addToCart.style.display = "block";
+                } else {
+                    console.log("NONE");
+                    addToCart.style.display = "none";
+                }
+            }
+        }
+    }, 500);
+});
+
 export default class ProductDetails extends ProductDetailsBase {
     constructor($scope, context, productAttributesData = {}) {
         super($scope, context);
@@ -25,7 +42,7 @@ export default class ProductDetails extends ProductDetailsBase {
             if (!this.imageGallery.imageData || this.imageGallery.imageData.length === 0) {
                 // console.warn("⚠ Intentando obtener imágenes directamente desde `product.images`");
             }
-        }, 2000);
+        }, 1000);
         this.listenQuantityChange();
         this.$swatchOptionMessage = $('.swatch-option-message');
         this.swatchInitMessageStorage = {};
@@ -315,6 +332,8 @@ export default class ProductDetails extends ProductDetailsBase {
             // Llamada a la API de BigCommerce para actualizar variantes
             utils.api.productAttributes.optionChange(productId, $form.serialize(), 'products/bulk-discount-rates', (err, response) => {
                 const productAttributesData = response.data || {};
+
+                console.log(" Datos de variante obtenidos:", productAttributesData);
         
                 this.updateProductAttributes(productAttributesData);
                 this.updateView(productAttributesData, response.content);
@@ -742,21 +761,6 @@ export default class ProductDetails extends ProductDetailsBase {
         }));
     }
 }
-document.addEventListener("DOMContentLoaded", function() {
-    setTimeout(function() {
-        if (window.BCData && BCData.product_attributes) {
-            let addToCart = document.getElementById("add-to-cart-container");
-            if (addToCart) {
-                if (BCData.product_attributes.purchasable) {
-                    console.log("BLOCK");
-                    addToCart.style.display = "block";
-                } else {
-                    console.log("NONE");
-                    addToCart.style.display = "none";
-                }
-            }
-        }
-    }, 500);
-});
+
 
 
