@@ -181,16 +181,30 @@ export default function productOptionGraphql (context) {
                     const symbol = objs.currency.display.symbol;
                     const selectedOptions = objs.productWithSelectedOptions;
 
-                    const basePrice = selectedOptions.prices.basePrice.value;
-                    const salePrice = selectedOptions.prices.salePrice?.value;
+                    console.log("📌 Datos recibidos de GraphQL:", selectedOptions);
+                    // Agregar IGV
+                    const IGV_PERCENT = 0.18;
+                    const roundToTwo = (num) => Math.round((num + Number.EPSILON) * 100) / 100;
+                    // const truncateToTwo = (num) => Math.floor(num * 100) / 100;
+                    
+                    // const basePrice = selectedOptions.prices.basePrice.value;
+                    // const salePrice = selectedOptions.prices.salePrice?.value;
+                    const basePrice = roundToTwo(selectedOptions.prices.basePrice.value * (1 + IGV_PERCENT));
+                    const salePrice = selectedOptions.prices.salePrice?.value != null 
+                    ? roundToTwo(selectedOptions.prices.salePrice.value * (1 + IGV_PERCENT)) 
+                    : null;
+
+                    console.log("📌 VALOR DE BASEPRICE (+IGV):", basePrice);
+                    console.log("📌 VALOR DE SALEPRICE (+IGV):", salePrice);
+                    
                     const urlOriginal = selectedOptions.defaultImage.urlOriginal;
 
                     let priceHtml = "";
                     if(typeof salePrice != "undefined" && salePrice != null){
-                        priceHtml += `<div class="price-section d-inline-block price-section--withTax"><span data-product-price-with-tax="" class="price price--withTax">${symbol}${salePrice.toFixed(2)}</span></div>`;
+                        priceHtml += `<div class="price-section d-inline-block price-section--withTax"><span data-product-price-with-tax="" class="price price--withTax">${symbol}${salePrice.toFixed(2)} </span></div>`;
                         priceHtml += `<div class="price-section d-inline-block price-section--withTax rrp-price--withTax"><span data-product-rrp-with-tax="" class="price price--rrp">${symbol}${basePrice.toFixed(2)}</span></div>`;
                     }else{
-                        priceHtml += `<div class="price-section d-inline-block price-section--withTax"><span data-product-price-with-tax="" class="price price--withTax">${symbol}${basePrice.toFixed(2)}</span></div>`;
+                        priceHtml += `<div class="price-section d-inline-block price-section--withTax"><span data-product-price-with-tax="" class="price price--withTax">${symbol}${basePrice.toFixed(2)} </span></div>`;
                     }
                     $('['+selectorAttrName+'="'+productId+'"] .card-img-container .card-image').attr('src',urlOriginal).attr('srcset',urlOriginal);
                     $('['+selectorAttrName+'="'+productId+'"] .card-text[data-test-info-type="price"]').html(priceHtml);

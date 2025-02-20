@@ -188,7 +188,7 @@
 }
 .card-image {
     margin: 0 auto !important;
-   border-radius: 8px;
+   border-radius: 0px;
     border: 0;
     /* Object-fit polyfill */
     font-family: "object-fit: contain;";
@@ -259,6 +259,7 @@
 }
 .card-text.myprice {
     padding-top: 0px;
+    padding-left: 25px;
     width: 50%;
 }
 .card-figcaption-button {

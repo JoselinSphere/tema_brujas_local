@@ -100,7 +100,6 @@
 }
 .card-title > a {
 	color: #333;
-	font-size: 20px;
 	font-weight: 400;
 	display: block;
 	text-decoration: none;
@@ -109,6 +108,7 @@
 	text-overflow: ellipsis;
 	text-transform: capitalize;
 	padding-bottom: 1px;
+    padding-left: 25px;
 	white-space: normal;
 	font-size: 14px;
 }
@@ -119,6 +119,8 @@
 	letter-spacing: 0;
 	color: black;
 	font-size: 14px;
+    // Espacio entre los precios
+    margin-right: 7px;
 }
 
 #bc-carousel-container-4c1537fc-dba0-4aa7-9ce8-c37c3d330890 {
