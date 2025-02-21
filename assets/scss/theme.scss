@@ -114,13 +114,17 @@
 }
 .price {
 	text-align: center !important;
-	font-size: 18px;
 	font-weight: 700;
 	letter-spacing: 0;
-	color: black;
-	font-size: 14px;
-    // Espacio entre los precios
-    margin-right: 7px;
+	color: rgb(0, 0, 0);
+	font-size: 16px;
+    // Espacio entre los precios base y sales
+    margin-right: 8px;
+}
+// Tamaño del precio Base
+.priceoferta {
+    font-size: 12px;
+    color:rgb(58, 59, 58);
 }
 
 #bc-carousel-container-4c1537fc-dba0-4aa7-9ce8-c37c3d330890 {

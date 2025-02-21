@@ -17,6 +17,8 @@
                 <span class="price-now-label" {{#unless price.non_sale_price_with_tax}}style="display: none;"{{/unless}}>
                     {{theme_settings.pdp-sale-price-label}}
                 </span>
+
+
                 <span data-product-price-with-tax class="price price--withTax">{{price.with_tax.formatted}}</span>
                 {{#if schema_org}}
                     <meta itemprop="availability" itemtype="http://schema.org/ItemAvailability" 
@@ -36,7 +38,7 @@
             </div>
              <div class="price-section d-inline-block price-section--withTax non-sale-price--withTax" {{#unless price.non_sale_price_with_tax}}style="display: none;"{{/unless}}>
                 {{theme_settings.pdp-non-sale-price-label}}
-                <span data-product-non-sale-price-with-tax class="price price--non-sale">
+                <span data-product-non-sale-price-with-tax class="price price--non-sale priceoferta">
                     {{price.non_sale_price_with_tax.formatted}}
                 </span>
             </div>

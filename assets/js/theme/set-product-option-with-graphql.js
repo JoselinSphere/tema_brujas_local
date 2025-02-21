@@ -202,7 +202,7 @@ export default function productOptionGraphql (context) {
                     let priceHtml = "";
                     if(typeof salePrice != "undefined" && salePrice != null){
                         priceHtml += `<div class="price-section d-inline-block price-section--withTax"><span data-product-price-with-tax="" class="price price--withTax">${symbol}${salePrice.toFixed(2)} </span></div>`;
-                        priceHtml += `<div class="price-section d-inline-block price-section--withTax rrp-price--withTax"><span data-product-rrp-with-tax="" class="price price--rrp">${symbol}${basePrice.toFixed(2)}</span></div>`;
+                        priceHtml += `<div class="price-section d-inline-block price-section--withTax rrp-price--withTax"><span data-product-rrp-with-tax="" class="price price--rrp priceoferta">${symbol}${basePrice.toFixed(2)}</span></div>`;
                     }else{
                         priceHtml += `<div class="price-section d-inline-block price-section--withTax"><span data-product-price-with-tax="" class="price price--withTax">${symbol}${basePrice.toFixed(2)} </span></div>`;
                     }

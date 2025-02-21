@@ -41,8 +41,9 @@
 }
 @media(max-width: 991px){
     .productCarousel-slide{
-        padding-left: 0px;
-        padding-right: 0px;
+        // Agregar espacio entre card movil
+        padding-left: 1px;
+        padding-right: 1px;
     }
     .productCarousel{
         margin-left: -5px;
@@ -52,11 +53,12 @@
 // Eliminar espacio entre las tarjetas
 @media(min-width: 992px) {
     .productCarousel-slide {
-        padding-left: 0px;
-        padding-right: 0px;
+        // Agregar espacio entre card pc
+        padding-left: 1px;
+        padding-right: 1px;
     }
     .productCarousel {
-        margin-left: 0px;
-        margin-right: 0px;
+        margin-left: 5px;
+        margin-right: -2px;
     }
 }
