@@ -68,6 +68,13 @@
         }
     }
 }
+.card-img-container {
+    height: 550px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
 .card-img-container:after {
     padding-bottom: 100% !important;
 }
@@ -193,7 +200,8 @@
     /* Object-fit polyfill */
     font-family: "object-fit: contain;";
     max-height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    height: 100%;
     width: 100%;
 }
 .card-figure .second-img {
@@ -204,10 +212,13 @@
     position: absolute;
     right: 0;
     // transition: all .1s ease-in-out 0s;
-    border-radius: 8px;
+    border-radius: 0px;
     max-height: 100%;
-    object-fit: contain;
+    // tamaño uniforme sin espacios vacíos
+    object-fit: cover;
     width: 100%;
+    // Aumentar el tamaño de la imagen secundaria
+    height: 550px;
 }
 .card-figure:hover .card-figure {
     opacity: 1;
