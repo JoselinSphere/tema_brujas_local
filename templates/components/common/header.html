@@ -68,45 +68,7 @@
     </div>
 </header>
 {{#if theme_settings.homepage_announcement_bar_show}}
-    <div class="top-bar" id="header_banner">
-        <button id="closeButton"><span>X</span></button> 
-      <div class="container section-gap announcementbar" >
-        <div class="row">
-            <div class="col-12 text-center">
-                <div class="header_bar">
-                    
-                    <div class="topBarPromotion-carousel"
-                    data-slick='{
-                        "dots": false,
-                        "arrows": false,
-                        "infinite": true,
-                        "mobileFirst": true,
-                        "vertical": true,
-                        "autoplay": true,
-                        "slidesToShow": 1,
-                        "slidesToScroll": 1,
-                        "responsive": [
-                            {
-                                "breakpoint": 768,
-                                "settings": {
-                                    "arrows": false
-                                }
-                            }
-                        ]
-                    }'
-                >       
-                        <div class="top-bar-f" aria-hidden="true">
-                            <a href="{{theme_settings.top_text_link}}" title="offer">{{theme_settings.top_text}}</a>         
-                        </div>
-                        <div class="top-bar-f" aria-hidden="true">
-                            <a href="{{theme_settings.top_text_link2}}" title="offer">{{theme_settings.top_text2}}</a>              
-                        </div>
-                </div>
-                </div>
-            </div>
-        </div>
-      </div>
-    </div>
+<!-- Banner negro -->
 {{/if}}
 <div id="header_placeholder"></div>
 {{else}}
