@@ -26,7 +26,7 @@
                                 {
                                     "breakpoint": 1409,
                                     "settings": {
-                                        "slidesToShow": 5,
+                                        "slidesToShow": 4,
                                         "slidesToScroll": 2
                                     }
                                 },
@@ -77,9 +77,11 @@
                             > 
                             {{#each categories }}
                                 <div class="home-cate-item col-12 pre-col">
+                                <!-- <div class="home-cate-item col-4 col-md-4 col-lg-3 pre-col"> -->
                                     <div class="catebg">
                                         <div class="cate-img">
-                                            <a class="" href="{{url}}"><img src="{{getImage image}}" alt="Category-image"></a>
+                                            <a class="img-card" href="{{url}}"><img src="{{getImage image}}" alt="Category-image"
+                                                ></a>
                                         </div>
                                     </div>
                                     <div class="cate-ti">
