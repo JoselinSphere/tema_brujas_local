@@ -2545,6 +2545,16 @@ svg{
         bottom: 0;
         font-size: 16px;
     }
+    // Sphere: Titulo y precio de categorias en movil
+    .cate-ti .catename{
+        font-size: 14px;
+    }
+    .cate-ti p{
+        font-size: 14px;
+    }
+    .cate-ti span{
+        font-size: 14px;
+    }
 }
 @media(max-width: 800px){
     .catename{
