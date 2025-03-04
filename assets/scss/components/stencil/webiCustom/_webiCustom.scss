@@ -73,7 +73,7 @@ a:hover{
     footer h5 .toggle.collapsed::after, footer h5 .toggle::after {
         font-family: FontAwesome;
         font-size: 14px;
-        font-weight: 400;
+        font-weight: normal;
         float: right;
         cursor: pointer;
     }
@@ -134,8 +134,29 @@ input:focus{
     margin: 0;
 }
 .section-spacing{
-    padding-top: 80px;
+    // padding-top: 80px; // Sphere
+    padding-top: 30px;
 }
+
+.banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: #ffffff1e;
+    padding: 2px;
+    
+}
+.images {
+    flex: 2;
+    display: flex;
+    justify-content: space-around;
+}
+.images img {
+    max-width: 100%;
+    height: auto;
+}
+
 #contact-us-page h2 iframe{
     width: 100%;
 }
@@ -249,13 +270,13 @@ input:focus{
                 margin: 0 0 20px 0;
                 text-align: center;
                 font-size: 24px;
-                font-weight: 600;
+                font-weight: normal;
             }
             .np-message{
                 margin: 0 0 20px 0;
                 text-align: center;
                 font-size: 18px;
-                font-weight: 600;
+                font-weight: normal;
             }
             .np-subscription-form{
                 width: 70%;
@@ -287,7 +308,7 @@ input:focus{
                         .button {
                             margin:15px 0 0 0;
                             font-size: 16px;
-                            font-weight: 700;
+                            font-weight: normal;
                             text-transform: uppercase;
                             padding: 17px 20px 16px;
                             color: stencilColor("button--primary-color");
@@ -380,7 +401,7 @@ input:focus{
                 text-align: center;
                 color: #000;
                 font-size: 16px;
-                font-weight: 700;
+                font-weight: normal;
             }
         }
 
@@ -404,22 +425,22 @@ input:focus{
             h3{
                 text-align: center;
                 font-size: 16px;
-                font-weight: 700;
+                font-weight: normal;
                 line-height: 1.7;
                 text-align: center;
                 margin: 0 0 5px 0;
-                text-transform: capitalize;
+                text-transform: none;
                 color: #000;
             }
             h5{
                 margin: 0 0 15px 0;
-                font-weight: 500;
+                font-weight: normal;
                 font-size: 16px;
-                font-weight: 400;
+                font-weight: normal;
                 color: #000;
                 line-height: 1.7;
                 text-align: center;
-                text-transform: capitalize;
+                text-transform: none;
             }
 
             .form-field.form-field-radio{
@@ -436,8 +457,8 @@ input:focus{
                 border: none;
                 width: 100%;
                 font-size: 16px;
-                font-weight: 700;
-                text-transform: capitalize;
+                font-weight: normal;
+                text-transform: uppercase;
                 padding: 17px 20px 16px;
                 &:hover{
                     background-color: stencilColor("button--primary-backgroundColorHover");
@@ -453,7 +474,7 @@ input:focus{
             h4{
                 margin: 0;
                 font-size: 16px;
-                font-weight: 400;
+                font-weight: normal;
                 color: #000;
                 text-align: center;
             }
@@ -495,7 +516,7 @@ input:focus{
     .ask-expert-title{
         margin-bottom: 0px;
         font-size: 16px;
-        text-transform: capitalize;
+        text-transform: none;
         cursor: pointer;
         display: inline-block;
     }
@@ -532,15 +553,15 @@ input:focus{
 @media(min-width:801px){
     .navPage-subMenu-item > .navPage-subMenu-action {
         color: stencilColor("main-color");
-        font-weight:600;
+        font-weight:normal;
         border-bottom:none;
-        text-transform: capitalize;
+        text-transform: uppercase;
         margin-bottom: 10px !important;
     }
     .allcate a{
         padding: 10px 15px !important;
          color: $color-primary !important;
-        font-weight:500 !important;
+        font-weight:normal !important;
         border-bottom: none !important;
         display: none !important;
     }
@@ -579,7 +600,7 @@ input:focus{
     }
     .navPage-subMenu-list .navPage-subMenu-item a {
         padding: 0px !important;
-        text-transform: capitalize;
+        text-transform: none;
         margin: 8px 0;
     }
     footer .collapse {
@@ -603,7 +624,7 @@ svg{
     text-align: center;
     margin-top: 80px;
     margin-bottom: 0;
-    text-transform: capitalize;
+    text-transform: none;
     color: #000;
 }
 .home-heading::after {
@@ -678,7 +699,7 @@ svg{
     display: inline-block;
     vertical-align: middle;
     font-size: 18px;
-    text-transform: capitalize;
+    text-transform: none;
     cursor: pointer;
 }
 .play-video i{
@@ -761,7 +782,7 @@ svg{
     margin-top: 0px;
     font-size: 26px;
     color: stencilColor("color-white");
-    text-transform: capitalize;
+    text-transform: none;
 }
 .video-content p{
     font-size: 16px;
@@ -802,8 +823,8 @@ svg{
 }
 .catename {
     font-size: 18px;
-    font-weight: 600;
-    text-transform: capitalize;
+    font-weight: normal;
+    text-transform: none;
     display: inline-block;
     line-height: normal;
     position: relative;
@@ -908,11 +929,11 @@ svg{
 }
 .deliveryinfo h1{
     font-size: 18px;
-    font-weight: 600;
+    font-weight: normal;
     margin-top: 0;
     color: stencilColor("color-textBase");
     margin-bottom: 10px;
-    text-transform: capitalize;
+    text-transform: none;
 }
 .list-unstyled:hover h4{
     color: stencilColor("color-textBase--hover");
@@ -928,7 +949,7 @@ svg{
     font-size: 15px;
     color: stencilColor("color-textBase");
     width: 100%;
-    text-transform: capitalize;
+    text-transform: none;
 }
 .deliveryinfo svg{
     fill: #000;
@@ -973,7 +994,7 @@ svg{
 .banner-text h2{
     font-size: 20px;
     margin: 0px 0px;
-    font-weight: 500; 
+    font-weight: normal; 
 }
 .firstban{
     position:relative;
@@ -983,7 +1004,7 @@ svg{
     color: stencilColor("button--primary-color");
     padding: 12px 22px;
     text-transform: uppercase;
-    font-weight: 400;
+    font-weight: normal;
     border-radius: 0px;
 }
 .off-text .banner-img-btn a:hover{
@@ -1171,11 +1192,11 @@ svg{
             font-size: 13px;
             padding: 10px 5px;
             margin-bottom: 0;
-            font-weight: 500;
+            font-weight: normal;
             color: #1a2531;
             line-height: 16px;
             margin-top: 0;
-            text-transform: capitalize;
+            text-transform: none;
             width: 100%;
             text-align: center;
             display: block;
@@ -1259,7 +1280,7 @@ svg{
                             margin: 0 0 10px 0;
                             > a{
                                 color: #000;
-                                font-weight: 500;
+                                font-weight: normal;
                                 white-space: nowrap;
                                 text-overflow: ellipsis;
                                 overflow: hidden;
@@ -1285,7 +1306,7 @@ svg{
                                 line-height: 24px;
                                 letter-spacing: .02em;
                                 color: #000;
-                                text-transform: capitalize;
+                                text-transform: none;
                                 text-decoration: underline;
                             }
                         }
@@ -1356,7 +1377,7 @@ svg{
         cursor: pointer;
         color: #1a2531;
         font-size: 12px;
-        font-weight: 500;
+        font-weight: normal;
         text-transform: uppercase;
         letter-spacing: .02em;
         transition: all 0.4s;
@@ -1464,7 +1485,7 @@ svg{
             color: #757575;
             margin: 0;
             font-size: 18px;
-            font-weight: 300;
+            font-weight: normal;
             line-height: 1;
             margin: 0;
         }
@@ -1678,7 +1699,7 @@ svg{
                         display: inline-block;
                         width: 100%;
                         color: #969696;
-                        font-weight: 400;
+                        font-weight: normal;
                         margin-bottom: 5px;
                         line-height: 22px;
                         letter-spacing: .02em;
@@ -1692,7 +1713,7 @@ svg{
                         }
                         
                         .rb_product_name {
-                            font-weight: 500;
+                            font-weight: normal;
                             overflow: hidden;
                             text-overflow: ellipsis;
                             -webkit-line-clamp: 1;
@@ -1802,7 +1823,7 @@ svg{
 }
 .site-page h2{
     font-size: 18px;
-    font-weight: 600;
+    font-weight: normal;
     margin-bottom: 30px;
 }
 .site-page ul li{
@@ -1920,23 +1941,23 @@ svg{
 }
 .imgbanner .img-des h5{
     font-size: 16px;
-    font-weight: 500;
-    text-transform: capitalize;
+    font-weight: normal;
+    text-transform: none;
     color: stencilColor("color-textBase--hover");
     margin: 0;
 }
 .imgbanner .img-des h4{
     font-size: 34px;
     color: stencilColor("color-textBase");
-    font-weight: 600;
-    text-transform: capitalize;
+    font-weight: normal;
+    text-transform: none;
     margin: 15px 0px;
 }
 .imgbanner .img-des p{
     display: inline;
     margin: 0;
     font-size: 14px;
-    text-transform: capitalize;
+    text-transform: none;
     line-height: 30px;
 }
 .banner-caption{
@@ -1955,8 +1976,8 @@ svg{
 .topbanner-topics li{
     list-style-type: none;
     font-size: 16px;
-    font-weight: 500;
-    text-transform: capitalize;
+    font-weight: normal;
+    text-transform: none;
     margin: 15px 0;
 }
 .topbanner-topics li i{
@@ -1995,7 +2016,7 @@ svg{
     display: inline;
     line-height: 30px;
     color: stencilColor("color-textBase");
-    font-weight: 500;
+    font-weight: normal;
 }
 .testi-box svg{
     width: 30px;
@@ -2011,12 +2032,12 @@ svg{
     margin-bottom: 0px;
     margin-top: 0;
     font-size: 22px;
-    text-transform: capitalize;
+    text-transform: none;
 }
 .testi-detail h3{
     font-size: 14px;
-    font-weight: 500;
-    text-transform: capitalize;
+    font-weight: normal;
+    text-transform: none;
     margin: 0;
     color: stencilColor("color-textBase");
 }
@@ -2040,6 +2061,15 @@ svg{
         flex: 0 0 75% !important;
         max-width: 75% !important;
     }
+    .banner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background-color: #ffffff1e;
+        padding: 2px;
+        height: 470px;
+    }
 }
 @media(min-width: 1440px){
     #colm-left {
@@ -2053,6 +2083,15 @@ svg{
         -ms-flex: 0 0 80% !important;
         flex: 0 0 80% !important;
         max-width: 80% !important;
+    }
+    .banner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background-color: #ffffff1e;
+        padding: 2px;
+        height: 470px;
     }
 }
 @media(min-width:801px) and (max-width:991px){
@@ -2260,11 +2299,20 @@ svg{
         height: 60px;
         top: 70%;
     }
+    .banner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background-color: #ffffff1e;
+        padding: 2px;
+        
+    }
 }
 @media(min-width: 801px) and (max-width: 991px){
     .navPages-action {
         font-size: 14px !important;
-        text-transform: capitalize !important;
+        text-transform: none !important;
     }
     .navPages-action {
         padding: 18px 5px !important;
@@ -2469,7 +2517,8 @@ svg{
         padding-top: 14px;
     }
     .section-spacing{
-        padding-top: 60px;
+        // padding-top: 60px; // Sphere
+        padding-top: 30px;
     }
     .compareTable-product {
         width: 290px !important;
@@ -2646,7 +2695,7 @@ svg{
     footer h3 .toggle.collapsed::after, footer h3 .toggle::after {
         font-family: FontAwesome;
         font-size: 14px;
-        font-weight: 400;
+        font-weight: normal;
         float: right;
         cursor: pointer;
     }
@@ -2670,7 +2719,7 @@ svg{
     }
     .footer-info-heading {
         font-size: 14px;
-        font-weight: 600;
+        font-weight: normal;
         margin: 12px 0;
     }
     .cate-ti div{
@@ -3013,7 +3062,7 @@ svg{
         padding: 0;
         background: transparent;
         color: #000;
-        text-transform: capitalize;
+        text-transform: none;
     }
     .off-img-three {
         display: block;
