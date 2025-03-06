@@ -170,9 +170,11 @@
 .topsp .slick-slide img {
     display: block;
     width: 100%;
+    //Sphere: sin bordes y tamaño mayor
     border-radius: 0px;
-    height: 450px;
-}
+    height: 68vh;
+}   
+
 
 //
 // Carousel dots
@@ -342,7 +344,7 @@ div.slick-slider {
     color: $slick-play-pause-button-color;
     display: none;
     font-size: 14px;
-    font-weight: 700;
+    font-weight: normal;
     height: 32px;
     left: 15px;
     line-height: 1.25;
@@ -413,9 +415,9 @@ div.slick-slider {
     // Sphere: tamaño mas reducido en movil
     .topsp .slick-slide img {
         display: block;
-        width: 100%;
+        width: 95%;
         border-radius: 0px;
-        height: 250px;
+        height: 38vh;
     } 
 }
 @media(max-width: 800px){

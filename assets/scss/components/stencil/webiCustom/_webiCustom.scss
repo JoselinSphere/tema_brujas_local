@@ -34,6 +34,18 @@ dl, ol, ul{
     margin: 0;
 }
 
+.desktop-banner {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.mobile-banner {
+    display: none;
+    max-width: 100%;
+    height: auto;
+}
+
 @keyframes goDown {
   0%{
     top:-60px;
@@ -138,14 +150,16 @@ input:focus{
     padding-top: 30px;
 }
 
-.banner {
+.section-spacing .banner {
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     background-color: #ffffff1e;
     padding: 2px;
-    
+    margin: 25px 0px;
+    max-width: 100%;
+    width: 100%;
 }
 .images {
     flex: 2;
@@ -2068,7 +2082,6 @@ svg{
         position: relative;
         background-color: #ffffff1e;
         padding: 2px;
-        height: 470px;
     }
 }
 @media(min-width: 1440px){
@@ -2091,7 +2104,6 @@ svg{
         position: relative;
         background-color: #ffffff1e;
         padding: 2px;
-        height: 470px;
     }
 }
 @media(min-width:801px) and (max-width:991px){
@@ -2308,6 +2320,12 @@ svg{
         padding: 2px;
         
     }
+    .desktop-banner {
+        display: none;
+    }
+    .mobile-banner {
+        display: block;
+    }
 }
 @media(min-width: 801px) and (max-width: 991px){
     .navPages-action {
@@ -2334,6 +2352,12 @@ svg{
     }
     .cart-it{
         display: none;
+    }
+    .desktop-banner {
+        display: none;
+    }
+    .mobile-banner {
+        display: block;
     }
 }
 @media(max-width: 599px){
@@ -2520,6 +2544,17 @@ svg{
         // padding-top: 60px; // Sphere
         padding-top: 30px;
     }
+    .section-spacing .banner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background-color: #ffffff1e;
+        padding: 2px;
+        margin: 10px 0px;
+        max-width: 100%;
+        width: 100%;
+    }
     .compareTable-product {
         width: 290px !important;
     }
@@ -2603,6 +2638,12 @@ svg{
     }
     .cate-ti span{
         font-size: 14px;
+    }
+    .desktop-banner {
+        display: none;
+    }
+    .mobile-banner {
+        display: block;
     }
 }
 @media(max-width: 800px){
@@ -2845,6 +2886,17 @@ svg{
     .section-spacing{
         padding-top: 30px;
     }
+    .section-spacing .banner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background-color: #ffffff1e;
+        padding: 2px;
+        margin: 0px 0px;
+        max-width: 100%;
+        width: 100%;
+        }
     // .header-logo-image-container .header-logo-image {
     //     max-height: 40px !important;
     //     max-width: 80px;
